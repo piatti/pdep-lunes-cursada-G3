@@ -1,7 +1,9 @@
+--Microcontrolador
 module MicroEntrega1 where
 
 import Text.Show.Functions
 
+--1) Lo modelamos como un data, como constructor, para respetar el orden y estructura del micro, y sumar expresividad defindiendo los tipos.
 data Micro = Micro Nombre Acumulador Acumulador PC [Memoria] Error deriving Show
 
 type Nombre = String
@@ -40,10 +42,11 @@ at8086 = Micro "at8086" 0 0 0 [1..20] ""
 nop :: Micro -> Micro
 nop (Micro nombre acumA acumB pc memoria error) = Micro nombre acumA acumB (pc+1) memoria error
 
+--2) Usamos composición para aplicar funciones al micro
 avanzarTresPosiciones :: Micro -> Micro
-avanzarTresPosiciones = ejecucionMultiple [nop,nop,nop]
+avanzarTresPosiciones = nop.nop.nop
 
-ejecucionMultiple :: Foldable t => t (a -> a) -> a -> a
+ejecucionMultiple :: Foldable a => a (b -> b) -> b -> b
 ejecucionMultiple instrucciones micro = foldr ($) micro instrucciones
 
 lodv :: Acumulador -> Micro -> Micro
