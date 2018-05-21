@@ -88,7 +88,7 @@ ejecutarPrograma micro = foldl (flip ($)) micro (programas micro)
 
 --3.3
 ifnz:: Micro -> Micro
-ifnz micro | acumuladorA (ejecutarPrograma micro) /= 0 = ejecutarPrograma micro
+ifnz micro | acumuladorA micro /= 0 = ejecutarPrograma micro
            | otherwise = micro 
 --3.4
 depurar :: Micro -> Micro
