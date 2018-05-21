@@ -13,10 +13,10 @@ type Error = String
 type Programa = Micro -> Micro
 
 xt8088 :: Micro
-xt8088 = Micro 0 0 0 [suma10y22] (replicate 1024 0) ""
+xt8088 = Micro 0 0 0 [] (replicate 1024 0) ""
 
 fp20 :: Micro
-fp20 = Micro 7 24 0 [division2y0,suma10y22] [] ""
+fp20 = Micro 7 24 0 [] [] ""
 
 at8086 :: Micro
 at8086 = Micro 0 0 0 [] [1..20] ""
