@@ -16,7 +16,7 @@ xt8088 :: Micro
 xt8088 = Micro 0 0 0 [suma10y22] (replicate 1024 0) ""
 
 fp20 :: Micro
-fp20 = Micro 7 24 0 [suma10y22] [] ""
+fp20 = Micro 7 24 0 [division2y0,suma10y22] [] ""
 
 at8086 :: Micro
 at8086 = Micro 0 0 0 [] [1..20] ""
@@ -95,7 +95,7 @@ depurar :: Micro -> Micro
 depurar micro = micro {programas = filter (instruccionNecesaria micro) (programas micro)}
 
 instruccionNecesaria :: a -> (a -> Micro) -> Bool
-instruccionNecesaria micro instruccion = acumuladorA (instruccion micro) /= 0 || acumuladorB (instruccion micro) /= 0 || (not.any (==0)) (memoria (instruccion micro))
+instruccionNecesaria micro instruccion = acumuladorA (instruccion micro) /= 0 && acumuladorB (instruccion micro) /= 0 && (not.all (==0)) (memoria (instruccion micro))
 
 --3.5
 estaOrdenada :: Ord a => [a] -> Bool
