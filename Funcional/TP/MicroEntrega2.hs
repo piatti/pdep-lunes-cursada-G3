@@ -4,7 +4,13 @@ module MicroEntrega1 where
 import Text.Show.Functions
 
 --1) Lo modelamos como un data, como constructor, para respetar el orden y estructura del micro, y sumar expresividad defindiendo los tipos.
-data Micro = Micro{acumuladorA :: Acumulador, acumuladorB :: Acumulador, programCounter :: PC, programas :: [Programa], memoria :: [Memoria], mensajeError :: Error} deriving Show
+data Micro = Micro {
+   acumuladorA :: Acumulador, 
+   acumuladorB :: Acumulador, 
+   programCounter :: PC, 
+   programas :: [Programa], 
+   memoria :: [Memoria], 
+   mensajeError :: Error} deriving Show
 
 type Acumulador = Int
 type PC = Int
@@ -88,7 +94,7 @@ ejecutarPrograma micro = foldl (flip ($)) micro (programas micro)
 
 --3.3
 ifnz:: Micro -> Micro
-ifnz micro | acumuladorA (ejecutarPrograma micro) /= 0 = ejecutarPrograma micro
+ifnz micro | acumuladorA micro /= 0 = ejecutarPrograma micro
            | otherwise = micro 
 --3.4
 depurar :: Micro -> Micro
