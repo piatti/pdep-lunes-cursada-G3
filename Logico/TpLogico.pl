@@ -3,7 +3,7 @@
 %pareja(Persona, Persona)
 pareja(marsellus, mia).
 pareja(pumkin,    honeyBunny).
-:- discontiguous 
+::- discontiguous (pareja/2). 
 
 
 %trabajaPara(Empleador, Empleado)
@@ -23,6 +23,8 @@ personaje(mia,        actriz([foxForceFive])).
 personaje(butch,      boxeador).
 personaje(bernardo,   mafioso(cerebro)).
 personaje(bianca,     actriz([elPadrino1])).
+personaje(elVendedor, vendedor([humo, iphone])).
+personaje(jimmie,     vender([auto])). 
 
 % encargo(Solicitante, Encargado, Tarea). 
 % las tareas pueden ser cuidar(Protegido), ayudar(Ayudado), buscar(Buscado, Lugar)
@@ -37,7 +39,7 @@ encargo(bernardo, winston, buscar(jules, lugano)).
 
 amigo(vincent, jules).
 amigo(jules, jimmie).
-amigo(vincent, elVendedor)
+amigo(vincent, elVendedor). 
 
 %----------------------------------------------------------------------------------------
 
