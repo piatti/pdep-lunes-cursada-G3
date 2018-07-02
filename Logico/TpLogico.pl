@@ -66,8 +66,7 @@ trabajaPara(Empleador, george):-
 
 %1.4
 esFiel(Personaje):-
-  personaje(Alguien,_),
-  saleCon(Personaje,Alguien),
+    saleCon(Personaje,_),
   not(esInfiel(Personaje)).
 
 esInfiel(Personaje):-
@@ -81,19 +80,20 @@ acataOrden(Empleador, Empleado):-
 
 acataOrden(Empleador, Empleado):-
   trabajaPara(Empleador, UnEmpleado),
-  trabajaPara(UnEmpleado, Empleado).
+  acataOrden(UnEmpleado,Empleado).
 
 %2
 %2.1
 esPeligroso(Personaje):-
-  personaje(Personaje,mafioso(maton)).
+  personaje(Personaje,Rol),
+  esRolPeligroso(Rol).
 
-esPeligroso(Personaje):-
-  personaje(Personaje,ladron(Lugares2)),
+
+esRolPeligroso(mafioso(maton)).
+esRolPeligroso(ladron(Lugares2)):-
   member(licorerias, Lugares2).
 
 esPeligroso(Personaje):-
-  personaje(Personaje,_),
   trabajaPara(Empleador,Personaje),
   esPeligroso(Empleador).
 
@@ -114,12 +114,12 @@ nivelRespeto(Personaje,Nivel):-
   personaje(Personaje,actriz(Pelis)),
   length(Pelis,Cuantas),
   Nivel is Cuantas *0.1.
-  
+
 nivelRespeto(Personaje,10):-
-  personaje(Personaje,mafioso(resuelveProblemas)). 
-  
+  personaje(Personaje,mafioso(resuelveProblemas)).
+
 nivelRespeto(Personaje, 20):-
-  personaje(Personaje,mafioso(capo)). 
+  personaje(Personaje,mafioso(capo)).
 
 nivelRespeto(vincent,15).
 
