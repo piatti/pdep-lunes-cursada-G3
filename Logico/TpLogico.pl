@@ -53,94 +53,95 @@ pareja(bernardo, charo).
 
 %1.3
 trabajaPara(Quien, bernardo):- 
-trabajaPara(marsellus, Quien), 
-Quien \= jules.
+  trabajaPara(marsellus, Quien), 
+  Quien \= jules.
+  
 trabajaPara(Empleador, george):-
-saleCon(Empleador, bernardo).
+  saleCon(Empleador, bernardo).
 
 %1.4
 esFiel(Personaje):-
-saleCon(Personaje,Alguien),
-not(esInfiel(Personaje)).
+  saleCon(Personaje,Alguien),
+  not(esInfiel(Personaje)).
 
 esInfiel(Personaje):-
-saleCon(Personaje,Alguien),
-saleCon(Personaje,Otra),
-Alguien \= Otra.
+  saleCon(Personaje,Alguien),
+  saleCon(Personaje,Otra),
+  Alguien \= Otra.
 
 %1.5
 acataOrden(Empleador, Empleado):-
-trabajaPara(Empleador, Empleado).
+  trabajaPara(Empleador, Empleado).
 
 acataOrden(Empleador, Empleado):-
-trabajaPara(Empleador, UnEmpleado),
-trabajaPara(UnEmpleado, Empleado).
+  trabajaPara(Empleador, UnEmpleado),
+  trabajaPara(UnEmpleado, Empleado).
 
 %2
 %2.1
 esPeligroso(Personaje):-
-personaje(Personaje,mafioso(maton)).
+  personaje(Personaje,mafioso(maton)).
 
 esPeligroso(Personaje):-
-personaje(Personaje,ladron(Lugares2)),
-member(licorerias, Lugares2).
+  personaje(Personaje,ladron(Lugares2)),
+  member(licorerias, Lugares2).
 
 esPeligroso(Personaje):-
-personaje(Personaje,_),
-trabajaPara(Empleado,Personaje),
-esPeligroso(Empleado).
+  personaje(Personaje,_),
+  trabajaPara(Empleado,Personaje),
+  esPeligroso(Empleado).
 
 %2.2
 tieneCerca(Personaje,Alguien):-
-amigo(Personaje,Alguien).
+  amigo(Personaje,Alguien).
 
 tieneCerca(Personaje,Alguien):-
-trabajaPara(Alguien,Personaje).
+  trabajaPara(Alguien,Personaje).
 
 sanCayetano(Personaje):-
-tieneCerca(Personaje,_),
-forall(tieneCerca(Personaje,Alguien),
-encargo(Personaje,Alguien,_)).
+  tieneCerca(Personaje,_),
+  forall(tieneCerca(Personaje,Alguien),
+  encargo(Personaje,Alguien,_)).
 
 %2.3
 nivelRespeto(Personaje,Nivel):-
-personaje(Personaje,actriz(Pelis)),
-length(Pelis,Cuantas),
-Nivel is Cuantas *0.1.
+  personaje(Personaje,actriz(Pelis)),
+  length(Pelis,Cuantas),
+  Nivel is Cuantas *0.1.
 
 nivelRespeto(Personaje,Nivel):-
-personaje(Personaje,mafioso(resuelveProblemas)),
-Nivel is 10.
+  personaje(Personaje,mafioso(resuelveProblemas)),
+  Nivel is 10.
 
 nivelRespeto(Personaje,Nivel):-
-personaje(Personaje,mafioso(capo)),
-Nivel is 20.
+  personaje(Personaje,mafioso(capo)),
+  Nivel is 20.
 
 nivelRespeto(vincent,15).
 
 %2.4
 respetabilidad(Respetables, NoRespetables):-
-findall(Personaje, respetable(Personaje), ListaDeBuenos),
-length(ListaDeBuenos, Respetables),
-personajesTotales(Total),
-NoRespetables is Total - Respetables. 
+  findall(Personaje, respetable(Personaje), ListaDeBuenos),
+  length(ListaDeBuenos, Respetables),
+  personajesTotales(Total),
+  NoRespetables is Total - Respetables. 
 
 personajesTotales(Total):-
-findall(Personaje, personaje(Personaje,_), Personajes),
-length(Personajes,Total).
+  findall(Personaje, personaje(Personaje,_), Personajes),
+  length(Personajes,Total).
 
 respetable(Personaje):-
-nivelRespeto(Personaje,Nivel),
-Nivel > 9.
+  nivelRespeto(Personaje,Nivel),
+  Nivel > 9.
 
 %2.5
 masAtareado(Persona) :-
-cantidadEncargos(Persona, Cantidad),
-forall(cantidadEncargos(_, OtraCantidad), 
-Cantidad >= OtraCantidad). 
+  cantidadEncargos(Persona, Cantidad),
+  forall(cantidadEncargos(_, OtraCantidad), 
+  Cantidad >= OtraCantidad). 
 
 cantidadEncargos(Personaje,Cantidad):-
-personaje(Personaje, _),
-findall(Encargo,encargo(_,Personaje,Encargo),Encargos),
-length(Encargos,Cantidad).
+  personaje(Personaje, _),
+  findall(Encargo,encargo(_,Personaje,Encargo),Encargos),
+  length(Encargos,Cantidad).
 
