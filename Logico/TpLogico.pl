@@ -5,8 +5,6 @@
 pareja(marsellus, mia).
 pareja(pumkin,    honeyBunny).
 
-
-
 %trabajaPara(Empleador, Empleado)
 :- discontiguous (trabajaPara/2). 
 trabajaPara(marsellus, vincent).
@@ -116,13 +114,12 @@ nivelRespeto(Personaje,Nivel):-
   personaje(Personaje,actriz(Pelis)),
   length(Pelis,Cuantas),
   Nivel is Cuantas *0.1.
-
+  
 nivelRespeto(Personaje,10):-
   personaje(Personaje,mafioso(resuelveProblemas)). 
   
 nivelRespeto(Personaje, 20):-
   personaje(Personaje,mafioso(capo)). 
-
 
 nivelRespeto(vincent,15).
 
