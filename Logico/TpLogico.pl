@@ -115,10 +115,9 @@ nivelRespeto(Personaje,Nivel):-
   length(Pelis,Cuantas),
   Nivel is Cuantas *0.1.
 
-nivelRespeto(Personaje,Nivel):-
-  personaje(Personaje,mafioso(resuelveProblemas)),
-  Nivel is 10.
-
+nivelRespeto(Personaje,10):-
+  personaje(Personaje,mafioso(resuelveProblemas)). 
+  
 nivelRespeto(Personaje,Nivel):-
   personaje(Personaje,mafioso(capo)),
   Nivel is 20.
