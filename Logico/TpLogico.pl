@@ -1,12 +1,14 @@
 %---------------------------Base de conocimiento----------------------------------------
 
 %pareja(Persona, Persona)
+:- discontiguous (pareja/2). 
 pareja(marsellus, mia).
 pareja(pumkin,    honeyBunny).
-::- discontiguous (pareja/2). 
+
 
 
 %trabajaPara(Empleador, Empleado)
+:- discontiguous (trabajaPara/2). 
 trabajaPara(marsellus, vincent).
 trabajaPara(marsellus, jules).
 trabajaPara(marsellus, winston).
@@ -95,7 +97,7 @@ esPeligroso(Personaje):-
 esPeligroso(Personaje):-
   personaje(Personaje,_),
   trabajaPara(Empleador,Personaje),
-  esPeligroso(Empleado).
+  esPeligroso(Empleador).
 
 %2.2
 tieneCerca(Personaje,Alguien):-
