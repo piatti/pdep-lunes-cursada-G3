@@ -94,7 +94,7 @@ esPeligroso(Personaje):-
 
 esPeligroso(Personaje):-
   personaje(Personaje,_),
-  trabajaPara(Empleado,Personaje),
+  trabajaPara(Empleador,Personaje),
   esPeligroso(Empleado).
 
 %2.2
