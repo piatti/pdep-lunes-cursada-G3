@@ -66,6 +66,7 @@ trabajaPara(Empleador, george):-
 
 %1.4
 esFiel(Personaje):-
+  personaje(Alguien,_),
   saleCon(Personaje,Alguien),
   not(esInfiel(Personaje)).
 
