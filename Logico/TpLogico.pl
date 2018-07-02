@@ -43,8 +43,11 @@ amigo(vincent, elVendedor)
 
 %1.1
 %saleCon(Quien, Cual)
-saleCon(Quien, Cual):- pareja(Quien, Cual).
-saleCon(Cual, Quien):- pareja(Quien, Cual).
+saleCon(Quien, Cual):- 
+  pareja(Quien, Cual).
+  
+saleCon(Cual, Quien):- 
+  pareja(Quien, Cual).
 %saleCon NO ES RECURSIVO (no se llama a si mismo).
 
 %1.2
